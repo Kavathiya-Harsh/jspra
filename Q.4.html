@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hide/Show Image with SessionStorage</title>
+  <style>
+    #myImage {
+      width: 200px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Button -->
+  <button id="toggleBtn">Hide Image</button>
+
+  <!-- Image -->
+  <img id="myImage" src="https://images.pexels.com/photos/17016814/pexels-photo-17016814.jpeg?cs=srgb&dl=pexels-shots-by-sandhu-61082068-17016814.jpg&fm=jpg" alt="Sample Image">
+
+  <script>
+    const btn = document.getElementById("toggleBtn");
+    const img = document.getElementById("myImage");
+
+    
+    window.onload = function() {
+      const storedState = sessionStorage.getItem("imageVisible");
+      if (storedState === "false") {
+
+        img.style.display = "none";
+        btn.textContent = "Show Image";
+
+      } else {
+
+        img.style.display = "block";
+        btn.textContent = "Hide Image";
+
+      }
+    };
+
+    
+    btn.addEventListener("click", function() {
+      if (img.style.display === "none") {
+        img.style.display = "block";
+        btn.textContent = "Hide Image";
+        sessionStorage.setItem("imageVisible", "true");
+      } else {
+        img.style.display = "none";
+        btn.textContent = "Show Image";
+        sessionStorage.setItem("imageVisible", "false");
+      }
+    });
+  </script>
+</body>
+</html>
